@@ -1,0 +1,42 @@
+eyJraWQiOiIwZGE2NTU3Zi03YzBhLTRjNjItYjE4Zi0xMTI4OGI2OTk0YjQiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwb3J0c3dpZ2dlciIsImV4cCI6MTc3MjE0MTYyMiwic3ViIjoid2llbmVyIn0.NksiRLn3UC8l5VNGq76bXtrXNshoY_VEyyngyuiguZwINZ4m8WU5i98ONGKNR_1Ae866nI8V9afH3cJdhT3ncO1V_wydckhztYCzdwf84-f8LnT8Oo35ctieGlmhrfWRGXlxvIBkPkJFg7ZBzfXBQX7F3lf1NdXKNFtqpnLI78mtlWN9eKPd0SqPGRh-zjR7HrBY0KKHxp3ISU0GLZiS-g0BX-z2_1EPtq9gnMkUoqWfXK_1X6ujE9K1EXVmCYaWEXMKJk-pHb3fxb83wDOpmtQgiQsenu_bMlPH0eFhNEpzAWb7FZ9bgZCjg9TJFOHxGJXVX56-hKZRA9lgqeVmUQ
+
+
+Lab: JWT authentication bypass via unverified signature
+url: https://portswigger.net/web-security/jwt/lab-jwt-authentication-bypass-via-unverified-signature
+
+
+Amaç: Carlosu silmek için admin paneline eriş
+
+
+
+Analiz: 
+
+    -- wiener olarak girerken Session değeri olarak JWT kullanılmış 
+    -- JWT paketini açtığımız zaman karşımıza çıkaran manzara bu şekilde oluyor
+   header: 
+            {
+                "kid": "0da6557f-7c0a-4c62-b18f-11288b6994b4",
+                "alg": "RS256"
+            }
+
+    payload:
+
+            {
+                "iss": "portswigger",
+                "exp": 1772141622,
+                "sub": "wiener"
+            }
+    -- İlk denememiz gerekn şey çok ironik ama alg değerini none olarak değiştirmek
+    -- None değeri işe yararsa admin olarak girmek için /admin adresine gideceğiz
+
+Sldırı:
+
+    -- None değerini kabul etti./admin olarak gidince bize administrator olarak gir dediğini görüyoruz
+    -- Şimdi burada değerlerimizi tekrar değitiriyoruz ve panele erişim kazanıyoruz. 
+    -- Paneldeki bilgilerle carlosu silebiliyoruz
+
+BİLGİ ------------------------------------------------------------------------------------------------------------------------------------
+
+    * Anlamsız metinlerden header ve payload kısmı aslında Base64 şifrelenmiş değerlerdir bunları çözüp manipüle edebiliriz
+    * Genel JWT değerlerini https://www.jwt.io/ sayfasından analiz edebilirsiniz.
+-------------------------------------------------------------------------------------------------------------------------------------------
