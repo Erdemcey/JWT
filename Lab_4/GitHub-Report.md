@@ -28,7 +28,7 @@ JWT doğrulaması sırasında sunucu, token içinde sağlanan JWK başlığını
 
 2. Tarayıcıdan mevcut oturum token'ını (JWT) yakalayın.
 3. `public.pem` ve `private.pem` dosyalarını aynı klasöre koyun.
-4. `Lab_4/token_fabrikası.py` script'ini kullanarak kendi token'ınızı üretin. Script aşağıdaki adımları otomatikleştirir:
+4. `Lab_4/token_fabrika.py` script'ini kullanarak kendi token'ınızı üretin. Script aşağıdaki adımları otomatikleştirir:
 
    - Orijinal token'ı decode eder (doğrulama yapmadan).
    - Payload içindeki `sub` alanını `administrator` olarak değiştirir.
@@ -55,7 +55,7 @@ JWK header injection zafiyeti sayesinde kendi anahtarımızla imzalanmış bir t
 
 ## Ek Bilgiler
 
-`token_fabrikası.py` içeriği bu raporla birlikte sunulmuştur. Script, Python `PyJWT` ve `cryptography` paketlerini gerektirir:
+`token_fabrika.py` içeriği bu raporla birlikte sunulmuştur. Script, Python `PyJWT` ve `cryptography` paketlerini gerektirir:
 
 ```bash
 pip install PyJWT cryptography
